@@ -1,9 +1,10 @@
 #include <iostream>
 using namespace std;
 
+// array of intergers to hold values
 int arr[20];
-int cmp_count = 0;
-int mov_count = 0;
+int cmp_count = 0; // number of comparasion
+int mov_count = 0; // number of data movements
 int n;
 
 void input() {
@@ -27,7 +28,7 @@ void input() {
         cin >> arr[i];
     }
 }
-
+// swap the element at index x with the element at index y
 void swap(int x, int y)
 {
     int temp = arr[x];
@@ -40,39 +41,45 @@ void q_short(int low, int high)
 {
     int temp;
     int pivot, i, j;
-    if (low > high)
+    if (low > high) //step 1
     {
         return;
     }
     
-    pivot = arr[low];
-    i = low + 1;
-    j = high;
+    pivot = arr[low]; // step 2
+    i = low + 1; // step 3
+    j = high; // step 4
 
-    while (i <= j)
+    while (i <= j) // step 10
     {
-        while ((arr[i] <= pivot) && (i <= high))
+        while ((arr[i] <= pivot) && (i <= high)) // step 5
         {
-            i++;
+            i++; // step 6
             cmp_count++;
         }
         cmp_count++;
-        while ((arr[j] > pivot) && (j >= low))
+        //search for an element less than or equal to pivot
+        while ((arr[j] > pivot) && (j >= low)) // step 7
         {
-            j--;
+            j--; // step 8
             cmp_count++;
         }
         cmp_count++;
-        if (1 < j)
+        if (i < j) // step 9
         {
+            //swap the pivot element with the element at index j
             swap(i, j);
         }
     }
     if (low < j) {
+        // swap the pivot element with the element at index j
         swap(low, j);
     }
+
+    // recursive call to sort the left sub array
     q_short(low, j - 1);
 
+    // recursive call to sort the right sub array
     q_short(j + 1, high);
 }
 
