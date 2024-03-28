@@ -21,7 +21,7 @@ void input() {
     cout << "\nEnter Array Element" << endl;
     cout << "\n-------------------" << endl;
 
-    for (int i = 0; 1 < n; i++)
+    for (int i = 0; i < n; i++)
     {
         cout << "<" << (i + 1) << ">";
         cin >> arr[i];
@@ -51,7 +51,7 @@ void q_short(int low, int high)
 
     while (i <= j)
     {
-        while ((arr[i] > pivot) && (i <= high))
+        while ((arr[i] <= pivot) && (i <= high))
         {
             i++;
             cmp_count++;
@@ -86,5 +86,20 @@ void display() {
 
 int main() 
 {
-    
+    char ch;
+
+    do {
+        input();
+        q_short(0, n - 1);
+        display();
+        cout << "\n\nDo you want to continue? (y/n): ";
+        cin >> ch;
+        if (ch == 'n' || ch == 'N')
+            break;
+
+        system("pause");
+        system("cls");
+    } while (true);
+
+    return 0;
 }
